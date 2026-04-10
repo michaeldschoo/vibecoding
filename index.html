@@ -1,14 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Lotto Recommender</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+  <div class="background-texture"></div>
+  <main class="container">
+    <header>
+      <h1>Lotto <span class="highlight">Pick</span></h1>
+      <p class="subtitle">Experience your luck with a modern twist.</p>
+    </header>
+
+    <section class="card">
+      <div id="ball-display" class="ball-container">
+        <!-- Lotto balls will be generated here -->
+        <div class="placeholder">Click the button to get your numbers!</div>
+      </div>
+      
+      <div class="actions">
+        <button id="generate-btn" class="glow-button">Generate Lucky Numbers</button>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Premium Lotto Recommender. All rights reserved.</p>
+    </footer>
+  </main>
+  <script type="module" src="main.js"></script>
 </body>
 </html>

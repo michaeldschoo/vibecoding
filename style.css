@@ -1,1 +1,152 @@
-/* Add styles here */
+:root {
+  --primary-color: oklch(0.65 0.25 260);
+  --secondary-color: oklch(0.65 0.25 320);
+  --accent-color: oklch(0.85 0.15 150);
+  --bg-color: oklch(0.15 0.02 260);
+  --card-bg: oklch(0.2 0.03 260);
+  --text-primary: oklch(0.95 0.01 260);
+  --text-secondary: oklch(0.75 0.02 260);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --font-main: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.background-texture {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.container {
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  z-index: 1;
+  padding: 2rem 0;
+}
+
+header h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+header .highlight {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 2rem;
+  padding: 3rem 2rem;
+  box-shadow: 0 20px 40px var(--shadow-color), 
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.ball-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 100px;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.placeholder {
+  color: var(--text-secondary);
+  font-style: italic;
+  opacity: 0.6;
+}
+
+.glow-button {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2),
+              0 0 20px var(--primary-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3),
+              0 0 30px var(--secondary-color);
+}
+
+.glow-button:active {
+  transform: scale(0.95);
+}
+
+footer {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+/* Container query example */
+@container (min-width: 400px) {
+  .ball-container {
+    gap: 1.5rem;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .card {
+    padding: 2rem 1rem;
+  }
+  
+  .glow-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
