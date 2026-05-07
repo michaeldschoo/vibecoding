@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Vision - Premium Object Recognizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-texture"></div>
+    
+    <a href="index.html" class="nav-link">Lotto Generator</a>
+
+    <div class="vision-container">
+        <header>
+            <h1>AI <span class="highlight">Vision</span></h1>
+            <p class="subtitle">Teachable Machine을 활용한 실시간 사물 인식</p>
+        </header>
+
+        <main>
+            <div class="webcam-card">
+                <div id="loading-overlay" class="loading-overlay">
+                    <div class="spinner"></div>
+                    <p>AI 모델을 불러오는 중...</p>
+                </div>
+                <div id="webcam-container"></div>
+                <div class="scan-line"></div>
+            </div>
+
+            <div id="label-container" class="label-container">
+                <!-- Results will be injected here -->
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 AI Application Hub. Powered by TensorFlow.js</p>
+        </footer>
+    </div>
+
+    <!-- TensorFlow.js and Teachable Machine Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="vision.js" type="module"></script>
+</body>
+</html>
