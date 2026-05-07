@@ -1,1 +1,20 @@
-A simple HTML/JS/CSS starter template
+# 🍀 Premium Lotto Pick
+
+현대적이고 세련된 디자인의 로또 번호 추천 웹사이트입니다. 한 번의 클릭으로 5세트의 행운의 번호를 만나보세요!
+
+## ✨ 주요 기능
+- **5세트 일괄 생성**: 한 번에 5개의 로또 번호 조합을 추천해줍니다.
+- **프리미엄 UI/UX**: OKLCH 컬러 스페이스와 부드러운 애니메이션을 적용하여 뛰어난 시각적 경험을 제공합니다.
+- **웹 컴포넌트 기반**: `Custom Elements`를 사용하여 독립적이고 깔끔한 코드로 구현되었습니다.
+- **반응형 디자인**: 모바일과 데스크톱 모두에서 완벽하게 작동합니다.
+
+## 🛠 사용된 기술
+- **HTML5**: 시맨틱 구조 및 Web Components (Custom Elements)
+- **CSS3**: OKLCH 컬러, CSS 변수, 고급 애니메이션, Flexbox 레이아웃
+- **JavaScript (ES6+)**: 모듈형 구조, 비동기 애니메이션 제어
+
+## 🚀 시작하기
+`index.html` 파일을 브라우저에서 열기만 하면 바로 실행됩니다!
+
+---
+© 2026 Premium Lotto Recommender.
