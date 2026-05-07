@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chint DTSU666 Interactive Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        .simulator {
+            background: #f5f5f5;
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .lcd-display {
+            background: #1a1a1a;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 0 10px #00ff00;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #667eea;
+            background: #e8eaf6;
+            color: #667eea;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .data-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .data-table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .code-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .warning-box p {
+            color: #856404;
+            margin: 0;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .info-box h4 {
+            color: #0c5460;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .info-box p {
+            color: #0c5460;
+            margin: 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .button-guide {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .button-guide p {
+            margin: 10px 0;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .lcd-display {
+                font-size: 1.5em;
+            }
+
+            .button-group {
+                gap: 10px;
+            }
+
+            .btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2em;
+            }
+
+            .data-table {
+                font-size: 0.9em;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-toggle">
+            <button class="lang-btn active" onclick="setLanguage('ko')">한글</button>
+            <button class="lang-btn" onclick="setLanguage('en')">English</button>
+        </div>
+
+        <div class="header">
+            <h1 id="title">Chint DTSU666 대화형 가이드</h1>
+            <p id="subtitle">스마트 미터 데이터 확인 및 진단</p>
+        </div>
+
+        <div class="content">
+            <!-- 소개 섹션 -->
+            <div class="section">
+                <h2 id="intro-title">소개</h2>
+                <p id="intro-text">Chint DTSU666은 태양광 시스템에서 전력 흐름을 정밀하게 측정하는 3상 스마트 미터입니다. 이 가이드는 미터기의 LCD 화면을 통해 주요 전력 데이터를 확인하는 방법을 보여줍니다.</p>
+            </div>
+
+            <!-- 버튼 조작 섹션 -->
+            <div class="section">
+                <h2 id="button-title">버튼 조작 방법</h2>
+                <div class="button-guide">
+                    <p><span class="step-number">1</span><span id="button-desc-1">SET 버튼: 설정 모드 진입 또는 메뉴 선택 확인</span></p>
+                    <p><span class="step-number">2</span><span id="button-desc-2">ESC 버튼: 메뉴 탈출 또는 이전 화면으로 돌아가기</span></p>
+                    <p><span class="step-number">3</span><span id="button-desc-3">화살표 버튼 (→): 다음 항목으로 이동 또는 값 증가</span></p>
+                </div>
+                <p id="button-instruction">아래 시뮬레이터에서 버튼을 눌러보세요:</p>
+            </div>
+
+            <!-- 가상 LCD 시뮬레이터 -->
+            <div class="section">
+                <h2 id="simulator-title">가상 LCD 시뮬레이터</h2>
+                <div class="simulator">
+                    <div class="lcd-display" id="lcdDisplay">코드 00<br>0.00 kWh</div>
+                    <div class="button-group">
+                        <button class="btn" onclick="selectCode()">SET</button>
+                        <button class="btn" onclick="escapeMenu()">ESC</button>
+                        <button class="btn" onclick="nextCode()">→</button>
+                    </div>
+                    <p id="current-code-info">현재 코드: <strong>00</strong> - 총 유효 전력량</p>
+                </div>
+            </div>
+
+            <!-- 주요 데이터 항목 -->
+            <div class="section">
+                <h2 id="data-table-title">주요 데이터 항목</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th id="th-code">코드</th>
+                            <th id="th-item">항목명</th>
+                            <th id="th-unit">단위</th>
+                            <th id="th-description">설명</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataTableBody">
+                        <!-- JavaScript에서 동적으로 생성 -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 중요 주의사항 -->
+            <div class="section">
+                <h2 id="important-title">⚠️ 중요 주의사항</h2>
+                <div class="warning-box">
+                    <h4 id="warning-title">미터기가 거꾸로 설치된 경우</h4>
+                    <p id="warning-text">현재 미터기가 물리적으로 거꾸로 설치되어 있다면, 코드 30번(총 유효 전력)의 부호(+/-)가 실제와 반대로 표시됩니다:</p>
+                </div>
+                <div class="info-box">
+                    <h4 id="info-title">코드 30번 해석 방법</h4>
+                    <p id="info-text"><strong>플러스(+) 표시:</strong> 실제로는 태양광이 생산되어 그리드로 수출 중<br><strong>마이너스(-) 표시:</strong> 실제로는 집에서 전기를 사용하여 그리드에서 수입 중</p>
+                </div>
+            </div>
+
+            <!-- 진단 가이드 -->
+            <div class="section">
+                <h2 id="diagnosis-title">설치 오류 진단 가이드</h2>
+                <h3 id="diagnosis-step1">1단계: 낮 시간 (태양광 생산 중)</h3>
+                <p id="diagnosis-step1-text">코드 30번을 확인하세요. 플러스(+) 값이 높게 나온다면, 미터기가 거꾸로 설치되었을 가능성이 높습니다.</p>
+
+                <h3 id="diagnosis-step2">2단계: 밤 시간 (전기 사용 중)</h3>
+                <p id="diagnosis-step2-text">EV 충전(1.3kW) 같은 큰 부하를 켜고 코드 30번을 확인하세요. 마이너스(-) 값이 나온다면 설치 오류가 확실합니다.</p>
+
+                <h3 id="diagnosis-step3">3단계: 화살표 방향 확인</h3>
+                <p id="diagnosis-step3-text">LCD 화면의 화살표 방향과 코드 30번의 부호가 상식적으로 맞지 않는다면, 설치 업체에 연락하여 미터기 재설치를 요청하세요.</p>
+            </div>
+
+            <!-- 연락처 -->
+            <div class="section">
+                <h2 id="contact-title">문제 해결</h2>
+                <p id="contact-text">미터기가 거꾸로 설치되어 있다면, 설치 업체에 다음과 같이 요청하세요:</p>
+                <div class="info-box">
+                    <p id="contact-message">"DTSU666 미터기(N1.2)가 물리적으로 거꾸로 설치되어 있습니다. 올바른 방향으로 재설치해 주십시오."</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p id="footer-text">© 2026 Chint DTSU666 Interactive Guide | Powered by Manus AI</p>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            ko: {
+                title: 'Chint DTSU666 대화형 가이드',
+                subtitle: '스마트 미터 데이터 확인 및 진단',
+                'intro-title': '소개',
+                'intro-text': 'Chint DTSU666은 태양광 시스템에서 전력 흐름을 정밀하게 측정하는 3상 스마트 미터입니다. 이 가이드는 미터기의 LCD 화면을 통해 주요 전력 데이터를 확인하는 방법을 보여줍니다.',
+                'button-title': '버튼 조작 방법',
+                'button-desc-1': 'SET 버튼: 설정 모드 진입 또는 메뉴 선택 확인',
+                'button-desc-2': 'ESC 버튼: 메뉴 탈출 또는 이전 화면으로 돌아가기',
+                'button-desc-3': '화살표 버튼 (→): 다음 항목으로 이동 또는 값 증가',
+                'button-instruction': '아래 시뮬레이터에서 버튼을 눌러보세요:',
+                'simulator-title': '가상 LCD 시뮬레이터',
+                'data-table-title': '주요 데이터 항목',
+                'th-code': '코드',
+                'th-item': '항목명',
+                'th-unit': '단위',
+                'th-description': '설명',
+                'important-title': '⚠️ 중요 주의사항',
+                'warning-title': '미터기가 거꾸로 설치된 경우',
+                'warning-text': '현재 미터기가 물리적으로 거꾸로 설치되어 있다면, 코드 30번(총 유효 전력)의 부호(+/-)가 실제와 반대로 표시됩니다:',
+                'info-title': '코드 30번 해석 방법',
+                'info-text': '<strong>플러스(+) 표시:</strong> 실제로는 태양광이 생산되어 그리드로 수출 중<br><strong>마이너스(-) 표시:</strong> 실제로는 집에서 전기를 사용하여 그리드에서 수입 중',
+                'diagnosis-title': '설치 오류 진단 가이드',
+                'diagnosis-step1': '1단계: 낮 시간 (태양광 생산 중)',
+                'diagnosis-step1-text': '코드 30번을 확인하세요. 플러스(+) 값이 높게 나온다면, 미터기가 거꾸로 설치되었을 가능성이 높습니다.',
+                'diagnosis-step2': '2단계: 밤 시간 (전기 사용 중)',
+                'diagnosis-step2-text': 'EV 충전(1.3kW) 같은 큰 부하를 켜고 코드 30번을 확인하세요. 마이너스(-) 값이 나온다면 설치 오류가 확실합니다.',
+                'diagnosis-step3': '3단계: 화살표 방향 확인',
+                'diagnosis-step3-text': 'LCD 화면의 화살표 방향과 코드 30번의 부호가 상식적으로 맞지 않는다면, 설치 업체에 연락하여 미터기 재설치를 요청하세요.',
+                'contact-title': '문제 해결',
+                'contact-text': '미터기가 거꾸로 설치되어 있다면, 설치 업체에 다음과 같이 요청하세요:',
+                'contact-message': '"DTSU666 미터기(N1.2)가 물리적으로 거꾸로 설치되어 있습니다. 올바른 방향으로 재설치해 주십시오."',
+                'footer-text': '© 2026 Chint DTSU666 Interactive Guide | Powered by Manus AI',
+                'current-code-info': '현재 코드: '
+            },
+            en: {
+                title: 'Chint DTSU666 Interactive Guide',
+                subtitle: 'Smart Meter Data Verification & Diagnostics',
+                'intro-title': 'Introduction',
+                'intro-text': 'The Chint DTSU666 is a three-phase smart meter that precisely measures power flow in solar systems. This guide shows you how to verify key power data through the meter\'s LCD screen.',
+                'button-title': 'Button Operation',
+                'button-desc-1': 'SET Button: Enter Setting Mode or Confirm Menu Selection',
+                'button-desc-2': 'ESC Button: Exit Menu or Return to Previous Screen',
+                'button-desc-3': 'Arrow Button (→): Move to Next Item or Increase Value',
+                'button-instruction': 'Try pressing the buttons in the simulator below:',
+                'simulator-title': 'Virtual LCD Simulator',
+                'data-table-title': 'Key Data Parameters',
+                'th-code': 'Code',
+                'th-item': 'Parameter Name',
+                'th-unit': 'Unit',
+                'th-description': 'Description',
+                'important-title': '⚠️ Important Notice',
+                'warning-title': 'When Meter is Installed Upside Down',
+                'warning-text': 'If the meter is physically installed upside down, the sign (+/-) of code 30 (Total Active Power) will be displayed opposite to reality:',
+                'info-title': 'How to Interpret Code 30',
+                'info-text': '<strong>Plus (+) Display:</strong> Solar is actually generating and exporting to grid<br><strong>Minus (-) Display:</strong> Home is actually consuming power from grid',
+                'diagnosis-title': 'Installation Error Diagnostic Guide',
+                'diagnosis-step1': 'Step 1: Daytime (Solar Generation Active)',
+                'diagnosis-step1-text': 'Check code 30. If a high positive value appears, the meter is likely installed upside down.',
+                'diagnosis-step2': 'Step 2: Nighttime (Electricity Usage)',
+                'diagnosis-step2-text': 'Turn on a heavy load like EV charging (1.3kW) and check code 30. If a negative value appears, installation error is confirmed.',
+                'diagnosis-step3': 'Step 3: Check Arrow Direction',
+                'diagnosis-step3-text': 'If the arrow direction on the LCD screen and the sign of code 30 don\'t make logical sense, contact your installer to request meter reinstallation.',
+                'contact-title': 'Troubleshooting',
+                'contact-text': 'If the meter is installed upside down, request the following from your installer:',
+                'contact-message': '"The DTSU666 meter (N1.2) is physically installed upside down. Please reinstall it in the correct orientation."',
+                'footer-text': '© 2026 Chint DTSU666 Interactive Guide | Powered by Manus AI',
+                'current-code-info': 'Current Code: '
+            }
+        };
+
+        const dataParameters = {
+            ko: [
+                { code: '00', name: '총 유효 전력량', unit: 'kWh', desc: '누적 전력량 (설치 오류와 관계없이 정확)' },
+                { code: '01', name: '정방향 유효 전력량', unit: 'kWh', desc: '그리드 수입 누적량 (거꾸로 설치 시 반대)' },
+                { code: '02', name: '역방향 유효 전력량', unit: 'kWh', desc: '그리드 수출 누적량 (거꾸로 설치 시 반대)' },
+                { code: '11', name: 'A상 전압', unit: 'V', desc: '정확한 전압 표시' },
+                { code: '21', name: 'A상 전류', unit: 'A', desc: '정확한 전류 표시' },
+                { code: '30', name: '총 유효 전력 ⭐', unit: 'kW', desc: '현재 전력 (거꾸로 설치 시 부호 반대)' },
+                { code: '50', name: '주파수', unit: 'Hz', desc: '정확한 주파수 표시' }
+            ],
+            en: [
+                { code: '00', name: 'Total Active Energy', unit: 'kWh', desc: 'Cumulative power (always accurate)' },
+                { code: '01', name: 'Positive Active Energy', unit: 'kWh', desc: 'Grid import cumulative (reversed if upside down)' },
+                { code: '02', name: 'Reverse Active Energy', unit: 'kWh', desc: 'Grid export cumulative (reversed if upside down)' },
+                { code: '11', name: 'Phase A Voltage', unit: 'V', desc: 'Accurate voltage display' },
+                { code: '21', name: 'Phase A Current', unit: 'A', desc: 'Accurate current display' },
+                { code: '30', name: 'Total Active Power ⭐', unit: 'kW', desc: 'Current power (sign reversed if upside down)' },
+                { code: '50', name: 'Frequency', unit: 'Hz', desc: 'Accurate frequency display' }
+            ]
+        };
+
+        const lcdValues = {
+            '00': '0.00',
+            '01': '1234.56',
+            '02': '567.89',
+            '11': '230.5',
+            '21': '8.5',
+            '30': '+3.83',
+            '50': '50.0'
+        };
+
+        let currentCodeIndex = 0;
+        let currentLanguage = 'ko';
+
+        const codes = ['00', '01', '02', '11', '21', '30', '50'];
+
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            document.documentElement.lang = lang;
+            
+            // Update all text elements
+            Object.keys(translations[lang]).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update data table
+            updateDataTable();
+            updateLCDDisplay();
+        }
+
+        function updateDataTable() {
+            const tbody = document.getElementById('dataTableBody');
+            tbody.innerHTML = '';
+            
+            dataParameters[currentLanguage].forEach(param => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td><span class="code-badge">${param.code}</span></td>
+                    <td>${param.name}</td>
+                    <td>${param.unit}</td>
+                    <td>${param.desc}</td>
+                `;
+            });
+        }
+
+        function updateLCDDisplay() {
+            const code = codes[currentCodeIndex];
+            const value = lcdValues[code];
+            const param = dataParameters[currentLanguage][currentCodeIndex];
+            
+            document.getElementById('lcdDisplay').innerHTML = `코드 ${code}<br>${value} ${param.unit}`;
+            document.getElementById('current-code-info').innerHTML = 
+                `${translations[currentLanguage]['current-code-info']}<strong>${code}</strong> - ${param.name}`;
+        }
+
+        function nextCode() {
+            currentCodeIndex = (currentCodeIndex + 1) % codes.length;
+            updateLCDDisplay();
+        }
+
+        function escapeMenu() {
+            alert(currentLanguage === 'ko' ? '메뉴를 탈출했습니다.' : 'Menu exited.');
+        }
+
+        function selectCode() {
+            alert(currentLanguage === 'ko' ? '선택되었습니다.' : 'Selected.');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDataTable();
+            updateLCDDisplay();
+        });
+    </script>
+</body>
+</html>
