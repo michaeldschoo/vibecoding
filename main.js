@@ -8,14 +8,14 @@ class LottoBall extends HTMLElement {
   connectedCallback() {
     const number = this.getAttribute('number');
     const color = this.getBallColor(parseInt(number));
+    const delay = this.getAttribute('delay') || '0s';
     
     this.shadowRoot.innerHTML = `
       <style>
         :host {
           display: inline-block;
-          width: 50px;
-          height: 50px;
-          margin: 5px;
+          width: 45px;
+          height: 45px;
           perspective: 1000px;
         }
         .ball {
@@ -28,12 +28,13 @@ class LottoBall extends HTMLElement {
           align-items: center;
           font-family: 'Outfit', sans-serif;
           font-weight: 800;
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           color: white;
-          box-shadow: inset -5px -5px 15px rgba(0,0,0,0.3),
-                      5px 5px 15px rgba(0,0,0,0.2);
+          box-shadow: inset -4px -4px 10px rgba(0,0,0,0.3),
+                      4px 4px 12px rgba(0,0,0,0.2);
           text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
           animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+          animation-delay: ${delay};
           opacity: 0;
           transform: scale(0) rotate(-45deg);
         }
@@ -64,8 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const generateBtn = document.getElementById('generate-btn');
   const ballDisplay = document.getElementById('ball-display');
 
-  generateBtn.addEventListener('click', () => {
-    // Generate 6 unique random numbers
+  function generateSingleSet() {
     const numbers = [];
     while (numbers.length < 6) {
       const rand = Math.floor(Math.random() * 45) + 1;
@@ -73,20 +73,29 @@ document.addEventListener('DOMContentLoaded', () => {
         numbers.push(rand);
       }
     }
-    
-    // Sort numbers
-    numbers.sort((a, b) => a - b);
+    return numbers.sort((a, b) => a - b);
+  }
 
+  generateBtn.addEventListener('click', () => {
     // Clear display
     ballDisplay.innerHTML = '';
 
-    // Add balls with a slight delay for each
-    numbers.forEach((num, index) => {
-      setTimeout(() => {
+    // Generate 5 sets
+    for (let i = 0; i < 5; i++) {
+      const numbers = generateSingleSet();
+      const setRow = document.createElement('div');
+      setRow.className = 'set-row';
+      setRow.style.animationDelay = `${i * 0.1}s`;
+
+      numbers.forEach((num, index) => {
         const ball = document.createElement('lotto-ball');
         ball.setAttribute('number', num);
-        ballDisplay.appendChild(ball);
-      }, index * 100);
-    });
+        // Each ball has a staggered delay based on set and index
+        ball.setAttribute('delay', `${(i * 0.15) + (index * 0.05)}s`);
+        setRow.appendChild(ball);
+      });
+
+      ballDisplay.appendChild(setRow);
+    }
   });
 });
