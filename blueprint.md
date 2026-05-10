@@ -6,16 +6,19 @@ A modern, interactive web application hub featuring utility tools like a Lotto N
 ## Project Outline
 - **Entry Point:** `index.html` (Lotto Recommender)
 - **AI Vision Page:** `ai_vision.html` (Teachable Machine based Object Recognizer)
+- **EV Calculator Page:** `ev_calculator.html` (Home EV Charging Time & Cost Calculator)
 - **Styling:** `style.css` (Base styles, shared variables, premium effects)
 - **Logic:** 
     - `main.js` (Lotto logic, Web Components)
     - `vision.js` (AI model loading, webcam management, classification)
+    - `ev_logic.js` (EV charging calculation and UI updates)
 - **Features:**
     - **Lotto Recommender:** Generates 5 unique sets of 6 numbers with smooth animations.
-    - **AI Object Recognizer:** 
-        - Real-time webcam classification using Google Teachable Machine.
-        - Premium Dashboard UI for AI results.
-        - Visual feedback with confidence levels.
+    - **AI Object Recognizer:** Real-time webcam/image classification.
+    - **EV Charging Calculator:** 
+        - Calculate charging time based on battery capacity and charger power.
+        - Estimate charging cost based on local electricity rates.
+        - Real-time visualization of charging progress and cost breakdown.
     - **Web Components:** Reusable `lotto-ball` and potential `ai-indicator` components.
     - **Premium UI:** OKLCH color palette, noise texture, deep shadows, and glassmorphism.
 
@@ -24,9 +27,11 @@ A modern, interactive web application hub featuring utility tools like a Lotto N
 2.  **AI Vision Expansion:**
     - Created `ai_vision.html` with a dedicated layout for webcam and AI results.
     - Integrated Teachable Machine Image model via `vision.js`.
-    - **Improved Camera Handling:** Implemented "Manual Connect" flow to prevent initialization errors and improve privacy.
-    - Implemented "Vision Dashboard" with real-time classification bars and scanning effects.
-    - Established navigation between Lotto and AI Vision pages.
+    - Improved camera handling and added image upload support.
+3.  **EV Calculator Development:**
+    - Created `ev_calculator.html` with an intuitive input form and result dashboard.
+    - Implemented `ev_logic.js` for precise time and cost estimations.
+    - Integrated with shared premium styles for consistency.
 
 ## Design Details
 - **Colors:** OKLCH palette (`primary: 260`, `secondary: 320`, `accent: 150`).
