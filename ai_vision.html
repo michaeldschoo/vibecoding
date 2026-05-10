@@ -24,9 +24,14 @@
             <div class="webcam-card">
                 <div id="loading-overlay" class="loading-overlay">
                     <div class="spinner"></div>
-                    <p>AI 모델을 불러오는 중...</p>
+                    <p id="loading-text">AI 시스템 준비 중...</p>
                 </div>
                 <div id="webcam-container"></div>
+                <div id="setup-container" class="setup-container">
+                    <div class="setup-icon">📷</div>
+                    <button id="connect-btn" class="glow-button">카메라 연결하기</button>
+                    <p class="setup-hint">카메라를 연결하여 실시간 사물 인식을 시작하세요</p>
+                </div>
                 <div class="scan-line"></div>
             </div>
 

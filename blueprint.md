@@ -24,6 +24,7 @@ A modern, interactive web application hub featuring utility tools like a Lotto N
 2.  **AI Vision Expansion:**
     - Created `ai_vision.html` with a dedicated layout for webcam and AI results.
     - Integrated Teachable Machine Image model via `vision.js`.
+    - **Improved Camera Handling:** Implemented "Manual Connect" flow to prevent initialization errors and improve privacy.
     - Implemented "Vision Dashboard" with real-time classification bars and scanning effects.
     - Established navigation between Lotto and AI Vision pages.
 
@@ -31,6 +32,7 @@ A modern, interactive web application hub featuring utility tools like a Lotto N
 - **Colors:** OKLCH palette (`primary: 260`, `secondary: 320`, `accent: 150`).
 - **Typography:** 'Outfit' for headings, 'Inter' for body.
 - **AI Vision UI:**
+    - **Setup State:** Dedicated setup screen with a "Connect Camera" button for a controlled user experience.
     - Centered camera preview with a futuristic "scanning" overlay.
     - Floating result cards with progress bars representing model confidence.
     - Smooth transitions between recognition states.
