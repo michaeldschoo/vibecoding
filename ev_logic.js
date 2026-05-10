@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const hours = Math.floor(timeInHours);
         const minutes = Math.round((timeInHours - hours) * 60);
-        chargingTimeLabel.textContent = `${hours}시간 ${minutes}분`;
+        chargingTimeLabel.textContent = `${hours}h ${minutes}m`;
         
-        totalCostLabel.textContent = Math.round(cost).toLocaleString();
+        totalCostLabel.textContent = cost.toFixed(2);
 
         // Calculate Finish Time
         if (timeInHours > 0) {

@@ -372,6 +372,25 @@ footer {
   width: 100%;
 }
 
+.currency-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency-symbol {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.currency-input input {
+  padding-left: 2rem !important;
+  text-align: left !important;
+  width: 100% !important;
+}
+
 .preset-group {
   display: flex;
   gap: 0.5rem;
