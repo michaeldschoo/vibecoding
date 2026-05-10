@@ -29,8 +29,15 @@
                 <div id="webcam-container"></div>
                 <div id="setup-container" class="setup-container">
                     <div class="setup-icon">📷</div>
-                    <button id="connect-btn" class="glow-button">카메라 연결하기</button>
-                    <p class="setup-hint">카메라를 연결하여 실시간 사물 인식을 시작하세요</p>
+                    <div class="setup-actions">
+                        <button id="connect-btn" class="glow-button">카메라 연결하기</button>
+                        <div class="divider"><span>OR</span></div>
+                        <label for="image-upload" class="outline-btn">
+                            <span>이미지 업로드</span>
+                            <input type="file" id="image-upload" accept="image/*" hidden>
+                        </label>
+                    </div>
+                    <p class="setup-hint">카메라를 연결하거나 이미지를 업로드하여 분석을 시작하세요</p>
                 </div>
                 <div class="scan-line"></div>
             </div>
