@@ -61,15 +61,52 @@
                 </div>
 
                 <div class="input-group">
-                    <label>Electricity Rate (AUD per kWh)</label>
-                    <div class="currency-input">
-                        <span class="currency-symbol">$</span>
-                        <input type="number" id="electricity-rate-input" value="0.30" step="0.01">
+                    <label>Electricity Rates (AUD per kWh)</label>
+                    <div class="tou-grid">
+                        <div class="tou-item peak">
+                            <span class="tou-label">Peak (4pm-8pm)</span>
+                            <div class="currency-input small">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="rate-peak" value="0.55" step="0.01">
+                            </div>
+                        </div>
+                        <div class="tou-item shoulder">
+                            <span class="tou-label">Shoulder (10am-2pm)</span>
+                            <div class="currency-input small">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="rate-shoulder" value="0.35" step="0.01">
+                            </div>
+                        </div>
+                        <div class="tou-item off-peak">
+                            <span class="tou-label">Off-Peak (Other)</span>
+                            <div class="currency-input small">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="rate-off-peak" value="0.25" step="0.01">
+                            </div>
+                        </div>
+                        <div class="tou-item night-saver">
+                            <span class="tou-label">Night Saver (12am-6am)</span>
+                            <div class="currency-input small">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="rate-night-saver" value="0.12" step="0.01">
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Charging Start Time</label>
+                    <input type="time" id="start-time-input" value="22:00">
+                    <p class="input-hint">Select when you plan to start charging</p>
                 </div>
             </section>
 
             <section class="result-section card">
+                <div class="smart-tip" id="smart-tip">
+                    <span class="tip-icon">💡</span>
+                    <p id="tip-text">Calculating best time to charge...</p>
+                </div>
+
                 <div class="battery-visual">
                     <div class="battery-body">
                         <div id="battery-fill" class="battery-fill"></div>

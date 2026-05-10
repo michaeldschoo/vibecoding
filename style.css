@@ -505,6 +505,89 @@ footer {
   color: var(--text-primary);
 }
 
+/* ToU Grid */
+.tou-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.tou-item {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tou-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.currency-input.small {
+  max-width: 100px;
+}
+
+.currency-input.small input {
+  padding: 0.4rem 0.5rem 0.4rem 1.8rem !important;
+  font-size: 0.9rem;
+}
+
+.input-hint {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  opacity: 0.6;
+}
+
+/* Smart Tip */
+.smart-tip {
+  background: rgba(var(--accent-color), 0.1);
+  border: 1px solid rgba(var(--accent-color), 0.2);
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.tip-icon {
+  font-size: 1.5rem;
+}
+
+#tip-text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+#tip-text strong {
+  color: var(--accent-color);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(var(--accent-color), 0.2); }
+  50% { transform: scale(1.02); box-shadow: 0 0 20px 0 rgba(var(--accent-color), 0.1); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(var(--accent-color), 0.2); }
+}
+
+#start-time-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  padding: 0.75rem;
+  border-radius: 12px;
+  font-family: var(--font-main);
+  font-size: 1rem;
+}
+
 @keyframes scan {
   0% { top: 0; opacity: 0; }
   10% { opacity: 1; }
