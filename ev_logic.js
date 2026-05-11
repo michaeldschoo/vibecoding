@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Night Saver: 12am - 6am
         if (hour >= 0 && hour < 6) return nightSaver;
-        // Shoulder: 10am - 2pm
+        // Shoulder (Midday Solar Soak): 10am - 2pm
         if (hour >= 10 && hour < 14) return shoulder;
         // Peak: 4pm - 8pm
         if (hour >= 16 && hour < 20) return peak;
