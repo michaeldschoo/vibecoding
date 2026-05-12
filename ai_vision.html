@@ -3,62 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Vision - Premium Object Recognizer</title>
+    <title>AI 행운 스캐너 - Premium Vision</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        #webcam-container {
+            margin: 2rem auto;
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 0 30px var(--primary-color);
+            position: relative;
+        }
+        #webcam-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+        }
+        #label-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+        .prediction-bar {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .bar-name { font-weight: bold; color: var(--text-primary); }
+        .bar-value { color: var(--accent-color); font-family: 'Outfit', sans-serif; }
+        
+        .nav-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+    </style>
 </head>
 <body>
     <div class="background-texture"></div>
-    
-    <nav class="top-nav">
-        <a href="index.html" class="nav-link-item">Lotto</a>
-        <a href="ai_vision.html" class="nav-link-item active">AI Vision</a>
-        <a href="ev_calculator.html" class="nav-link-item">EV Calc</a>
-    </nav>
-
-    <div class="vision-container">
+    <main class="container">
         <header>
             <h1>AI <span class="highlight">Vision</span></h1>
-            <p class="subtitle">Teachable Machine을 활용한 실시간 사물 인식</p>
+            <p class="subtitle">웹캠으로 사물을 인식하고 행운을 점쳐보세요.</p>
         </header>
 
-        <main>
-            <div class="webcam-card">
-                <div id="loading-overlay" class="loading-overlay">
-                    <div class="spinner"></div>
-                    <p id="loading-text">AI 시스템 준비 중...</p>
-                </div>
-                <div id="webcam-container"></div>
-                <div id="setup-container" class="setup-container">
-                    <div class="setup-icon">📷</div>
-                    <div class="setup-actions">
-                        <button id="connect-btn" class="glow-button">카메라 연결하기</button>
-                        <div class="divider"><span>OR</span></div>
-                        <label for="image-upload" class="outline-btn">
-                            <span>이미지 업로드</span>
-                            <input type="file" id="image-upload" accept="image/*" hidden>
-                        </label>
-                    </div>
-                    <p class="setup-hint">카메라를 연결하거나 이미지를 업로드하여 분석을 시작하세요</p>
-                </div>
-                <div class="scan-line"></div>
+        <section class="card">
+            <div id="webcam-container">
+                <!-- 웹캠 화면이 여기에 표시됩니다 -->
+            </div>
+            
+            <div id="label-container">
+                <!-- 결과 레이블이 여기에 표시됩니다 -->
             </div>
 
-            <div id="label-container" class="label-container">
-                <!-- Results will be injected here -->
+            <div class="actions" style="margin-top: 2rem;">
+                <button id="start-btn" class="glow-button">카메라 시작하기</button>
             </div>
-        </main>
+        </section>
+
+        <a href="index.html" class="nav-link">← 로또 번호 생성기로 돌아가기</a>
 
         <footer>
-            <p>&copy; 2026 AI Application Hub. Powered by TensorFlow.js</p>
+            <p>&copy; 2026 Premium AI Scanner. All rights reserved.</p>
         </footer>
-    </div>
+    </main>
 
-    <!-- TensorFlow.js and Teachable Machine Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-    <script src="vision.js" type="module"></script>
+    <script src="vision.js"></script>
 </body>
 </html>
